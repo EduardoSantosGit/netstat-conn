@@ -5,7 +5,8 @@
   "author": "eduardo",
   "license": "MIT",
   "scripts": {
-    "dev": "babel-node src/index.js"
+    "dev": "babel-node src/index.js",
+    "lint": "eslint --fix src && prettier --write \"src/**/*.js\""
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
