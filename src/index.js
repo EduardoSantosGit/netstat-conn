@@ -9,7 +9,7 @@ r.then((result) => {
 });
 */
 
-let r = new netstat().teste()
+let r = new netstat().netstat()
 console.log(r)
 export {
     r
