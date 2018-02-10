@@ -1,16 +1,16 @@
 import { exec } from 'child_process'
+import co from 'co'
 
 export default class NetStat {
 
-    executeCommand(){
-        
-        exec('node -v', function(error, stdout, stderr) {
-            console.log('stdout: ' + stdout);
-            console.log('stderr: ' + stderr);
-            if (error !== null) {
-                console.log('exec error: ' + error);
-            }
-        });
+    async executeCommand(){        
+        return new Promise((resolve, reject) => {
+            exec('netstat', (error, stdout, stderr) => {
+                if(error)
+                    reject(err)
+                
+                resolve(stdout)
+            })
+        })
     }
-
 }
