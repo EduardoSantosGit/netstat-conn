@@ -23,12 +23,17 @@ export default class NetStat {
         let arrArgs = ['a','e','n','o','s','r']
         let valid = true
 
-        args.forEach((x) => {
-            if(arrArgs.includes(x) === false){
-                valid = false
-            }
-        })
-
+        if(Array.isArray(args)){
+            args.forEach((x) => {
+                if(arrArgs.includes(x) === false){
+                    valid = false
+                }
+            })
+        }
+        else{
+            valid = arrArgs.includes(args)
+        }
+        
         return valid
     }
 
