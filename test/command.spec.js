@@ -33,4 +33,13 @@ describe('Command tests', () => {
         expect(ret).to.includes('State')
         expect(ret).to.includes('PID')
     })
+
+    it('test method commandNetstat param -s return item includes texts ip', () => { 
+        let ret = new Command().commandNetstat('-s')
+        expect(ret).to.includes('IPv4')
+        expect(ret).to.includes('IPv6')
+        expect(ret).to.includes('ICMPv4')
+        expect(ret).to.includes('ICMPv6')
+        expect(ret).to.includes('TCP')
+    })
 })    
