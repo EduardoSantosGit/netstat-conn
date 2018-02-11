@@ -81,4 +81,9 @@ describe('netstat tests', () => {
         expect(() => new Netstat().netstat('524545')).to.throw('Error invalid argument');
     })
 
+    it('test method formatArgs param string valid retuns string concat', () => { 
+        let ret = new Netstat().formatArgs('ars')
+        expect(ret).to.equal('-ars')
+    })
+
 })    

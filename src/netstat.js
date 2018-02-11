@@ -8,7 +8,7 @@ export default class NetStat {
             //call method
         }
         else if (args !== undefined && this.validateArgs(args) === true) {
-            let argu = this.convertArgs(args)
+            
         }
         else {
             throw new Error("Error invalid argument")
@@ -39,6 +39,9 @@ export default class NetStat {
         return (Array.isArray(args) === true) ? args : Array.from(args)
     }
 
-
+    formatArgs(args){
+        let value = (Array.isArray(args) === true) ? args.join('') : args 
+        return "-" + value
+    }
 
 }
