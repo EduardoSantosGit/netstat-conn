@@ -3,40 +3,45 @@ import { expect } from 'chai'
 
 describe('netstat tests', () => {
 
-    it('test method netstat params', () => {
-        
-        let net = new Netstat().netstat();
-        
-        expect(net).to.not.null
-    })
-
-    it('test method validateArgs params array valid', () => {
+    it('test method validateArgs params array valid return true', () => {
 
         let ret = new Netstat().validateArgs(['a','e','s'])
         expect(ret).to.true
     })
-
-    it('test method validateArgs params array not valid', () => {
+    
+    it('test method validateArgs params array not validreturn false', () => {
 
         let ret = new Netstat().validateArgs(['a','e','f'])
         expect(ret).to.false
     })
 
-    it('test method validateArgs param valid', () => {
+    it('test method validateArgs param valid return true', () => {
 
         let ret = new Netstat().validateArgs('a')
         expect(ret).to.true
     })
 
-    it('test method validateArgs param not valid', () => {
+    it('test method validateArgs param not valid return false', () => {
 
         let ret = new Netstat().validateArgs('j')
         expect(ret).to.false
     })
 
-    it('test method validateArgs param string not valid', () => {
+    it('test method validateArgs param string not valid return false', () => {
 
         let ret = new Netstat().validateArgs('aef')
+        expect(ret).to.false
+    })
+
+    it('test method validateArgs param number return false', () => {
+
+        let ret = new Netstat().validateArgs(1254)
+        expect(ret).to.false
+    })
+
+    it('test method validateArgs param NaN return false', () => {
+
+        let ret = new Netstat().validateArgs(NaN)
         expect(ret).to.false
     })
 })    
