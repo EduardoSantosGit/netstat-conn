@@ -20,9 +20,18 @@ export default class NetStat {
 
     validateArgs(args){
 
-        
+        let arrArgs = ['a','e','n','o','s','r']
+        let valid = true
 
+        args.forEach((x) => {
+            if(arrArgs.includes(x) === false){
+                valid = false
+            }
+        })
+
+        return valid
     }
+
     /*
     teste(){
         let ls = spawnSync('netstat', ['-a'], { encoding : 'utf8', timeout: 1000 });      
