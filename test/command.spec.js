@@ -24,4 +24,13 @@ describe('Command tests', () => {
         expect(ret).to.includes('Foreign')
         expect(ret).to.includes('State')
     })
+
+    it('test method commandNetstat param -o return item includes texts pid', () => { 
+        let ret = new Command().commandNetstat('-o')
+        expect(ret).to.includes('Proto')
+        expect(ret).to.includes('Local Address')
+        expect(ret).to.includes('Foreign')
+        expect(ret).to.includes('State')
+        expect(ret).to.includes('PID')
+    })
 })    
