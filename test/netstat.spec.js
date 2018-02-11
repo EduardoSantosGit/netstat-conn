@@ -86,4 +86,19 @@ describe('netstat tests', () => {
         expect(ret).to.equal('-ars')
     })
 
+    it('test method formatArgs param char valid retuns string', () => { 
+        let ret = new Netstat().formatArgs('a')
+        expect(ret).to.equal('-a')
+    })
+
+    it('test method formatArgs param array valid retuns string concat', () => { 
+        let ret = new Netstat().formatArgs(['a'])
+        expect(ret).to.equal('-a')
+    })
+
+    it('test method formatArgs param array multiple itens valid retuns string concat', () => { 
+        let ret = new Netstat().formatArgs(['a','r'])
+        expect(ret).to.equal('-ar')
+    })
+
 })    
