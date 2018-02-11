@@ -8,4 +8,10 @@ describe('Command tests', () => {
         expect(ret).to.includes('Local Address')
     })
     
+    it('test method commandNetstat param -e return item includes texts bytes', () => { 
+        let ret = new Command().commandNetstat('-e')
+        expect(ret).to.includes('Bytes')
+        expect(ret).to.includes('Received')
+        expect(ret).to.includes('Sent')
+    })
 })    
