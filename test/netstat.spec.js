@@ -50,4 +50,16 @@ describe('netstat tests', () => {
         let ret = new Netstat().convertArgs('a')
         expect(ret).to.eql(['a'])
     })
+
+    it('test method convertArgs param number retuns array empty', () => {
+
+        let ret = new Netstat().convertArgs(1254)
+        expect(ret).to.eql([])
+    })
+
+    it('test method convertArgs param NaN retuns array empty', () => {
+
+        let ret = new Netstat().convertArgs(NaN)
+        expect(ret).to.eql([])
+    })
 })    
