@@ -68,4 +68,17 @@ describe('netstat tests', () => {
         let ret = new Netstat().convertArgs('ars')
         expect(ret).to.eql(['a','r','s'])
     })
+
+    it('test method netstat param NaN retuns exception', () => { 
+        expect(() => new Netstat().netstat(NaN)).to.throw('Error invalid argument');
+    })
+
+    it('test method netstat param number retuns exception', () => { 
+        expect(() => new Netstat().netstat(524545)).to.throw('Error invalid argument');
+    })
+
+    it('test method netstat param number string retuns exception', () => { 
+        expect(() => new Netstat().netstat('524545')).to.throw('Error invalid argument');
+    })
+
 })    

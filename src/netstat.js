@@ -8,10 +8,12 @@ export default class NetStat {
         if (args === undefined) {
             //call method
         }
-        else if (args !== undefined) {
-            validateArgs(args)
+        else if (args !== undefined && this.validateArgs(args) === true) {
+            let argu = this.convertArgs(args)
         }
-
+        else {
+            throw new Error("Error invalid argument")
+        }
     }
 
     validateArgs(args) {
@@ -20,8 +22,8 @@ export default class NetStat {
         let valid = true
 
         let data = this.convertArgs(args)
-        
-        if(data.length === 0)
+
+        if (data.length === 0)
             return false
 
         data.forEach((x) => {
