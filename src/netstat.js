@@ -3,43 +3,39 @@ import co from 'co'
 
 export default class NetStat {
 
-    netstat(args, options){
+    netstat(args, options) {
 
-        if(options !== undefined){
-            
-        }
-
-        if(args === undefined){
+        if (args === undefined) {
             //call method
         }
-        else if(args !== undefined){
+        else if (args !== undefined) {
             validateArgs(args)
-        }    
-        
+        }
+
     }
 
-    validateArgs(args){
+    validateArgs(args) {
 
-        let arrArgs = ['a','e','n','o','s','r']
+        let arrArgs = ['a', 'e', 'n', 'o', 's', 'r']
         let valid = true
 
-        if(Array.isArray(args) === true || args.length > 1){
+        let data = this.convertArgs(args)
+        
+        if(data.length === 0)
+            return false
 
-            let data = (Array.isArray(args) === true) ? args : Array.from(args)
-            
-            data.forEach((x) => {
-                if(arrArgs.includes(x) === false){
-                    valid = false
-                }
-            })
-
-            return valid
-        }
-        else {
-            valid = arrArgs.includes(args)
-        }
+        data.forEach((x) => {
+            if (arrArgs.includes(x) === false) {
+                valid = false
+            }
+        })
 
         return valid
+
+    }
+
+    convertArgs(args) {
+        return (Array.isArray(args) === true) ? args : Array.from(args)
     }
 
     /*
@@ -48,6 +44,6 @@ export default class NetStat {
         return ls.stdout
     }*/
 
-    
+
 
 }
