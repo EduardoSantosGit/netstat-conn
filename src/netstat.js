@@ -1,4 +1,3 @@
-import { exec, spawnSync } from 'child_process'
 import co from 'co'
 
 export default class NetStat {
@@ -39,12 +38,6 @@ export default class NetStat {
     convertArgs(args) {
         return (Array.isArray(args) === true) ? args : Array.from(args)
     }
-
-    /*
-    teste(){
-        let ls = spawnSync('netstat', ['-a'], { encoding : 'utf8', timeout: 1000 });      
-        return ls.stdout
-    }*/
 
 
 
