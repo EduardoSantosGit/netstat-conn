@@ -62,4 +62,10 @@ describe('netstat tests', () => {
         let ret = new Netstat().convertArgs(NaN)
         expect(ret).to.eql([])
     })
+
+    it('test method convertArgs param string valid retuns array values', () => {
+
+        let ret = new Netstat().convertArgs('ars')
+        expect(ret).to.eql(['a','r','s'])
+    })
 })    
