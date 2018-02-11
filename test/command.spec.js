@@ -42,4 +42,12 @@ describe('Command tests', () => {
         expect(ret).to.includes('ICMPv6')
         expect(ret).to.includes('TCP')
     })
+
+    it('test method commandNetstat param -r return item includes texts Routes', () => { 
+        let ret = new Command().commandNetstat('-r')
+        expect(ret).to.includes('Active Routes')
+        expect(ret).to.includes('Network Destination')
+        expect(ret).to.includes('IPv6 Route Table')
+        expect(ret).to.includes('Metric Network Destination')
+    })
 })    
