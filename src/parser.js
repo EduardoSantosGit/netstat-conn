@@ -3,12 +3,7 @@ export default class Parser {
     parserArgE(body){
 
         let data = []
-        /*data.push({
-            bytes: {
-                "received": this.parser(body, "Bytes","Unicast packets"),
-                "sent": this.parser()
-            }
-        });*/
+       
         return this.parser(body, "Bytes","Unicast packets")
     }
 
