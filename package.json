@@ -8,7 +8,8 @@
     "dev": "babel-node src/index.js",
     "lint": "eslint --fix src && prettier --write \"src/**/*.js\"",
     "test": "set NODE_ENV=test && mocha test/**/*.spec.js --require babel-core/register --timeout 80000",
-    "cover": "nyc --reporter=lcov --reporter=text-lcov npm run test"
+    "cover": "nyc --reporter=lcov --reporter=text-lcov npm run test",
+    "test-run" : "set NODE_ENV=test && mocha test/parser.spec.js --require babel-core/register --timeout 80000"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

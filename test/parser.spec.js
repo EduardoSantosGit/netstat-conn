@@ -9,6 +9,6 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-e')
         let ret = new Parser().parserArgE(body)
 
-        console.log(ret)
+       // console.log(ret)
     })
 })
