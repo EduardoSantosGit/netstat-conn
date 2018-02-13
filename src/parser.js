@@ -13,11 +13,17 @@ export default class Parser {
         var rl = readline.createInterface({
             input: bufferStream,
         });
-       
-        rl.on('line', function (line) {
-            console.log(line)
+        
+        let linearr = []
+        rl.on('line', (line) => {
+            linearr = line.split(/\s+/)
+            linearr.forEach(x => {
+                if(Number.isInteger(Number(x))){
+                     
+                }
+            });
         });
-
+        
         return 
     }
 
