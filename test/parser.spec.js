@@ -4,10 +4,11 @@ import { expect } from 'chai'
 
 describe('parser tests', () => {
 
-    it('test method parserArgE params text', () => {
+    it('test method parserArgE params text', async () => {
 
         let body = new Command().commandNetstat('-e')
-        let ret = new Parser().parserArgE(body)
+        let parser = new Parser();
+        await parser.parserArgE(body)
 
        // console.log(ret)
     })

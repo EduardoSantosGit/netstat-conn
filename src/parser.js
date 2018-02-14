@@ -3,9 +3,7 @@ import stream from 'stream'
 
 export default class Parser {
 
-    parserArgE(body) {
-
-        let data = []
+    async parserArgE(body) {
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();
         bufferStream.end(buf);
@@ -15,10 +13,16 @@ export default class Parser {
         });
 
         let linearr = []
-        rl.on('line', (line) => {
-            linearr = line.split(/\s+/)      
-           
+        await rl.on('line', (line) => {
+            linearr.push(line)        
         });
+
+        let data = []
+        linearr.forEach(x => {
+            data.push(x.split(/\s+/))
+        })
+        
+        
 
         return
     }
