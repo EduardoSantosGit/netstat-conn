@@ -14,15 +14,42 @@ export default class Parser {
 
         let linearr = []
         await rl.on('line', (line) => {
-            linearr.push(line)        
+            linearr.push(line)
         });
 
         let data = []
         linearr.forEach(x => {
             data.push(x.split(/\s+/))
         })
-        
-        
+
+        console.log(data)
+
+        let number = []
+        for (let i = 0; i < data.length; i++) {
+
+            let count = 0
+            let pri = 0
+            let seg = 0
+            for (let j = 0; j < data[i].length; j++) {
+                
+                if(Number.isInteger(Number(data[i][j]))){
+
+                    if(count == 0){
+
+                        pri = data[i][j]
+
+                        count++
+                    }
+                    else {
+                        seg = data[i][j]
+                        count++
+                    }
+                }
+
+                console.log('primeiro ' , pri , "segundo ", seg)
+            }
+
+        }
 
         return
     }
