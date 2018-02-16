@@ -23,31 +23,11 @@ export default class Parser {
         })
 
         console.log(data)
+        let ret = []
+        for(let i=4;i<data.length;i++){
 
-        let number = []
-        for (let i = 0; i < data.length; i++) {
-
-            let count = 0
-            let pri = 0
-            let seg = 0
-            for (let j = 0; j < data[i].length; j++) {
-                
-                if(Number.isInteger(Number(data[i][j]))){
-
-                    if(count == 0){
-
-                        pri = data[i][j]
-
-                        count++
-                    }
-                    else {
-                        seg = data[i][j]
-                        count++
-                    }
-                }
-
-                console.log('primeiro ' , pri , "segundo ", seg)
-            }
+            let env = data[i][data[i].length-1]
+            let rec = data[i][data[i].length-2]
 
         }
 
