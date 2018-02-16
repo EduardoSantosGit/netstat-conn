@@ -29,6 +29,13 @@ export default class Parser {
             let env = data[i][data[i].length-1]
             let rec = data[i][data[i].length-2]
 
+            if(!Number.isInteger(Number(env)))
+                env = 0
+
+            if(!Number.isInteger(Number(rec)))
+                rec = 0  
+                
+            console.log(rec, " ", env)    
         }
 
         return
