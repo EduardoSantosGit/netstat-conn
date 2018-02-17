@@ -21,8 +21,7 @@ export default class Parser {
         linearr.forEach(x => {
             data.push(x.split(/\s+/))
         })
-
-        console.log(data)
+        
         let ret = []
         for(let i=4;i<data.length;i++){
 
@@ -41,10 +40,15 @@ export default class Parser {
                 name += " " + data[i][1]
             }
             
-            console.log(name)
+            ret.push({
+                "name" : name,
+                "received" : rec,
+                "sent" : env
+            })
+
         }
 
-        return
+        return ret
     }
 
 }
