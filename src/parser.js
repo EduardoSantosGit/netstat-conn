@@ -45,10 +45,9 @@ export default class Parser {
                 "received" : rec,
                 "sent" : env
             })
-
+            
         }
-
+        
         return ret
     }
-
 }
