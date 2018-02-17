@@ -50,4 +50,21 @@ export default class Parser {
         
         return ret
     }
+
+    async parserArgN(body) {
+        var buf = new Buffer(body);
+        var bufferStream = new stream.PassThrough();
+        bufferStream.end(buf);
+
+        var rl = readline.createInterface({
+            input: bufferStream,
+        });
+
+        let linearr = []
+        await rl.on('line', (line) => {
+            linearr.push(line)
+        });
+
+        return
+    }
 }
