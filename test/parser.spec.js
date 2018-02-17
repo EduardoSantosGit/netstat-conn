@@ -32,5 +32,16 @@ describe('parser tests', () => {
         })       
     })
 
-    
+    it('test method parserArgE params -e return json values numbers', async () => {
+
+        let body = new Command().commandNetstat('-e')
+        let parser = new Parser();
+        let ret = await parser.parserArgE(body)
+        
+        ret.map(x => {
+            expect(Number.isInteger(Number(x.sent))).to.true
+            expect(Number.isInteger(Number(x.received))).to.true
+        })       
+    })
+
 })
