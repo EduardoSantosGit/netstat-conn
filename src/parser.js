@@ -113,6 +113,10 @@ export default class Parser {
                 posipv6 = i
             }
         }
+
+        let ipv4 = this.parserIPV4(data.slice(posipv4 + 4, posipv6 - 4))
+        
+
     }
     
     parserIPV4(body){
@@ -127,6 +131,7 @@ export default class Parser {
                 "maetric" : body[i][5]
             })
         }
+        
         return ret
     }
 
