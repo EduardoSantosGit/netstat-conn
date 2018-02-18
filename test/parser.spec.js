@@ -125,6 +125,33 @@ describe('parser tests', () => {
         expect(jsonString).to.include("metric")
     })
 
+    it('test method parserIPV4 return values ip valid', async () => {
+
+        let body = new Command().commandNetstat('-r')
+        let parser = new Parser();
+        let ret = await auxFormatCmd(body)
+
+        let posipv4 = 0
+        let posipv6 = 0
+        for (let i = 0; i < ret.length; i++) {
+            if (ret[i].equals(['IPv4', 'Route', 'Table'])) {
+                posipv4 = i
+            }
+            if (ret[i].equals(['IPv6', 'Route', 'Table'])) {
+                posipv6 = i
+            }
+        }
+
+        let ipv4 = parser.parserIPV4(ret.slice(posipv4 + 4, posipv6 - 4))
+
+        ipv4.map(x => {
+            expect(x.networkDestination).to.include(".")   
+            expect(x.netmask).to.include(".")
+            expect(x.interface).to.include(".")   
+            expect(Number.isInteger(Number(x.metric))).to.true     
+        })    
+    })
+
 
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
