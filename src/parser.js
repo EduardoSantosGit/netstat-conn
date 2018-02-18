@@ -116,7 +116,18 @@ export default class Parser {
     }
     
     parserIPV4(body){
-
+        
+        let ret = []
+        for(let i=0;i<body.length;i++){
+            ret.push({
+                "networkDestination" : body[i][1],
+                "netmask" : body[i][2],
+                "gateway" : body[i][3],
+                "interface" : body[i][4],
+                "maetric" : body[i][5]
+            })
+        }
+        return ret
     }
 
 }
