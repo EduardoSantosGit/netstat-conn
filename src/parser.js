@@ -126,7 +126,7 @@ export default class Parser {
                 "netmask": body[i][2],
                 "gateway": body[i][3],
                 "interface": body[i][4],
-                "maetric": body[i][5]
+                "metric": body[i][5]
             })
         }
         return ret

@@ -1,6 +1,8 @@
 import Parser from '../src/parser'
 import Command from '../src/command'
 import { expect } from 'chai'
+import readline from 'readline'
+import stream from 'stream'
 
 describe('parser tests', () => {
 
@@ -93,12 +95,56 @@ describe('parser tests', () => {
         })    
     })
 
-    it('test method parserArgR', async () => {
+    it('test method parserIPV4 return json valid', async () => {
 
         let body = new Command().commandNetstat('-r')
         let parser = new Parser();
-        let ret = await parser.parserArgR(body)
-        
+        let ret = await auxFormatCmd(body)
+
+        let posipv4 = 0
+        let posipv6 = 0
+        for (let i = 0; i < ret.length; i++) {
+            if (ret[i].equals(['IPv4', 'Route', 'Table'])) {
+                posipv4 = i
+            }
+            if (ret[i].equals(['IPv6', 'Route', 'Table'])) {
+                posipv6 = i
+            }
+        }
+
+        let ipv4 = parser.parserIPV4(ret.slice(posipv4 + 4, posipv6 - 4))
+
+        let jsonString = JSON.stringify(ipv4[0])
+
+        expect(jsonString).to.include("{")
+        expect(jsonString).to.include("}")
+        expect(jsonString).to.include("networkDestination")
+        expect(jsonString).to.include("netmask")
+        expect(jsonString).to.include("gateway")
+        expect(jsonString).to.include("interface")
+        expect(jsonString).to.include("metric")
     })
+
+
+    async function auxFormatCmd(body){
+        var buf = new Buffer(body);
+        var bufferStream = new stream.PassThrough();
+        bufferStream.end(buf);
+
+        var rl = readline.createInterface({
+            input: bufferStream,
+        });
+
+        let linearr = []
+        await rl.on('line', (line) => {
+            linearr.push(line)
+        });
+
+        let data = []
+        linearr.forEach(x => {
+            data.push(x.split(/\s+/))
+        })
+        return data
+    }
 
 })
