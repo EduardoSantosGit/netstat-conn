@@ -181,6 +181,35 @@ describe('parser tests', () => {
         expect(jsonString).to.include("gateway")
     })
 
+    it('test method parserIPV6 return values ip valid', async () => {
+
+        let body = new Command().commandNetstat('-r')
+        let parser = new Parser();
+        let ret = await auxFormatCmd(body)
+
+        let posipv4 = 0
+        let posipv6 = 0
+        for (let i = 0; i < ret.length; i++) {
+            if (ret[i].equals(['IPv4', 'Route', 'Table'])) {
+                posipv4 = i
+            }
+            if (ret[i].equals(['IPv6', 'Route', 'Table'])) {
+                posipv6 = i
+            }
+        }
+
+        let ipv6 = parser.parserIPV6(ret.slice(posipv6 + 4, ret.length - 3))
+
+        ipv6.map(x => {
+            if(x.if !== "")
+                expect(Number.isInteger(Number(x.if))).to.true
+            if(x.metric !== "")
+                expect(Number.isInteger(Number(x.metric))).to.true
+            if(x.networkDestination !== "")   
+                expect(x.networkDestination).to.include(":") 
+        })    
+    })
+
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();
