@@ -60,4 +60,19 @@ describe('parser tests', () => {
         expect(jsonString).to.include("state")
     })
 
+    it('test method parserArgN params -n return values valid', async () => {
+
+        let body = new Command().commandNetstat('-n')
+        let parser = new Parser();
+        let ret = await parser.parserArgN(body)
+        
+        let state = ["CLOSE_WAIT", "CLOSED", "ESTABLISHED","FIN_WAIT_1","FIN_WAIT_2","LAST_ACK","LISTEN","SYN_RECEIVED",
+        "SYN_SEND","TIME_WAIT"]
+
+        ret.map(x => {
+            expect(x.protocol === ("TCP" || "UDP")).to.true
+            expect(state.includes(x.state)).to.true            
+        })    
+    })
+
 })
