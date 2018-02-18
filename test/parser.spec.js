@@ -68,10 +68,28 @@ describe('parser tests', () => {
         
         let state = ["CLOSE_WAIT", "CLOSED", "ESTABLISHED","FIN_WAIT_1","FIN_WAIT_2","LAST_ACK","LISTEN","SYN_RECEIVED",
         "SYN_SEND","TIME_WAIT"]
-
+        
         ret.map(x => {
             expect(x.protocol === ("TCP" || "UDP")).to.true
             expect(state.includes(x.state)).to.true            
+        })    
+    })
+
+    it('test method parserArgN params -n return values ips and ports valid', async () => {
+
+        let body = new Command().commandNetstat('-n')
+        let parser = new Parser();
+        let ret = await parser.parserArgN(body)
+        
+        ret.map(x => {
+
+            expect(x.localAddress).to.include(":")
+            expect(x.foreignAddress).to.include(":")
+
+            if(!x.localAddress.includes("[") || !x.foreignAddress.includes("[")){
+                expect(x.foreignAddress).to.include(".")
+                expect(x.localAddress).to.include(".")
+            }     
         })    
     })
 
