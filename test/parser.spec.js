@@ -44,11 +44,20 @@ describe('parser tests', () => {
         })       
     })
 
-    it('test method parserArgN ', async () => {
+    it('test method parserArgN params -n return json', async () => {
 
         let body = new Command().commandNetstat('-n')
         let parser = new Parser();
         let ret = await parser.parserArgN(body)
-    
+        
+        let jsonString = JSON.stringify(ret[0])
+
+        expect(jsonString).to.include("{")
+        expect(jsonString).to.include("}")
+        expect(jsonString).to.include("protocol")
+        expect(jsonString).to.include("localAddress")
+        expect(jsonString).to.include("foreignAddress")
+        expect(jsonString).to.include("state")
     })
+
 })
