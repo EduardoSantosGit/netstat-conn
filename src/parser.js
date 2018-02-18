@@ -98,7 +98,40 @@ export default class Parser {
             linearr.push(line)
         });
 
-        console.log(linearr)
+        let data = []
+        linearr.forEach(x => {
+            data.push(x.split(/\s+/))
+        })
+
+        for(let i=0;i<data.length;i++){
+
+            if(data[i].equals([ 'IPv4', 'Route', 'Table' ])){
+                console.log('achou')
+            }
+
+        }
+        
     }    
 
+}
+
+Array.prototype.equals = function (array) {
+    if (!array)
+        return false;
+
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+        
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            
+            if (!this[i].equals(array[i]))
+                return false;       
+        }           
+        else if (this[i] != array[i]) { 
+            return false;  
+        }           
+    }       
+    return true;
 }
