@@ -115,8 +115,7 @@ export default class Parser {
         }
 
         let ipv4 = this.parserIPV4(data.slice(posipv4 + 4, posipv6 - 4))
-        let ipv6 = this.parserIPV6(data.slice(posipv6 + 3, posipv6 - 3))
-
+        let ipv6 = this.parserIPV6(data.slice(posipv6 + 4, data.length - 3))
     }
 
     parserIPV4(body) {
@@ -136,12 +135,14 @@ export default class Parser {
     parserIPV6(body) {
 
         let ret = []
-        let ifs = 0
+        let ifs = ""
         let metric = ""
         let net = ""
         let gate = ""
 
         for (let i = 0; i < body.length; i++) {
+            
+            ifs = "", metric = "", net = "" , gate = ""
 
             if (body[i].length >= 5) {
                 ifs = body[i][1]
@@ -154,9 +155,9 @@ export default class Parser {
                 metric = body[i][2]
                 net = body[i][3]
             }
-            else if(body[i].length === 1){
+            else if(body[i].length === 2){
                 gate = body[i][1] 
-            }
+            } 
             ret.push(
                 {
                     "if": ifs,
