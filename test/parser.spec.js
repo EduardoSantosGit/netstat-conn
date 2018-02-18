@@ -152,6 +152,34 @@ describe('parser tests', () => {
         })    
     })
 
+    it('test method parserIPV6 return json valid', async () => {
+
+        let body = new Command().commandNetstat('-r')
+        let parser = new Parser();
+        let ret = await auxFormatCmd(body)
+
+        let posipv4 = 0
+        let posipv6 = 0
+        for (let i = 0; i < ret.length; i++) {
+            if (ret[i].equals(['IPv4', 'Route', 'Table'])) {
+                posipv4 = i
+            }
+            if (ret[i].equals(['IPv6', 'Route', 'Table'])) {
+                posipv6 = i
+            }
+        }
+
+        let ipv6 = parser.parserIPV6(ret.slice(posipv6 + 4, ret.length - 3))
+
+        let jsonString = JSON.stringify(ipv6[0])
+
+        expect(jsonString).to.include("{")
+        expect(jsonString).to.include("}")
+        expect(jsonString).to.include("if")
+        expect(jsonString).to.include("metric")
+        expect(jsonString).to.include("networkDestination")
+        expect(jsonString).to.include("gateway")
+    })
 
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
