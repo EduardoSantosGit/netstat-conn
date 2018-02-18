@@ -103,17 +103,21 @@ export default class Parser {
             data.push(x.split(/\s+/))
         })
 
-        let pos = 0
+        let posipv4 = 0
+        let posipv6 = 0
         for(let i=0;i<data.length;i++){
             if(data[i].equals([ 'IPv4', 'Route', 'Table' ])){
-                pos = i
+                posipv4 = i
+            }
+            if(data[i].equals([ 'IPv6', 'Route', 'Table' ])){
+                posipv6 = i
             }
         }
-        
-        for(let i=pos;i<data.length;i++){
-            
-        }
-    }    
+    }
+    
+    parserIPV4(body){
+
+    }
 
 }
 
