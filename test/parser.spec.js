@@ -221,7 +221,30 @@ describe('parser tests', () => {
         expect(ret.ipv6).to.not.null
     })
 
-    
+    it('test method parserArgR return values json valid', async () => {
+
+        let body = new Command().commandNetstat('-r')
+        let parser = new Parser();
+        let ret = await parser.parserArgR(body)  
+
+        let jsonString4 = JSON.stringify(ret.ipv4[0])
+        let jsonString6 = JSON.stringify(ret.ipv6[0])
+
+        expect(jsonString4).to.include("{")
+        expect(jsonString4).to.include("}")
+        expect(jsonString4).to.include("networkDestination")
+        expect(jsonString4).to.include("netmask")
+        expect(jsonString4).to.include("gateway")
+        expect(jsonString4).to.include("interface")
+        expect(jsonString4).to.include("metric")
+
+        expect(jsonString6).to.include("{")
+        expect(jsonString6).to.include("}")
+        expect(jsonString6).to.include("if")
+        expect(jsonString6).to.include("metric")
+        expect(jsonString6).to.include("networkDestination")
+        expect(jsonString6).to.include("gateway")
+    })
 
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
