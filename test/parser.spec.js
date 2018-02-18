@@ -210,6 +210,19 @@ describe('parser tests', () => {
         })    
     })
 
+    it('test method parserArgR return json and array not null', async () => {
+
+        let body = new Command().commandNetstat('-r')
+        let parser = new Parser();
+        let ret = await parser.parserArgR(body)  
+
+        expect(ret).to.not.null
+        expect(ret.ipv4).to.not.null
+        expect(ret.ipv6).to.not.null
+    })
+
+    
+
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();

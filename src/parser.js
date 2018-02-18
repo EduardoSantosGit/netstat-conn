@@ -116,6 +116,13 @@ export default class Parser {
 
         let ipv4 = this.parserIPV4(data.slice(posipv4 + 4, posipv6 - 4))
         let ipv6 = this.parserIPV6(data.slice(posipv6 + 4, data.length - 3))
+
+        let json = {
+            "ipv4" : ipv4,
+            "ipv6" : ipv6
+        }
+
+        return json
     }
 
     parserIPV4(body) {
