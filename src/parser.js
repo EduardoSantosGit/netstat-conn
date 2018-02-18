@@ -103,14 +103,16 @@ export default class Parser {
             data.push(x.split(/\s+/))
         })
 
+        let pos = 0
         for(let i=0;i<data.length;i++){
-
             if(data[i].equals([ 'IPv4', 'Route', 'Table' ])){
-                console.log('achou')
+                pos = i
             }
-
         }
         
+        for(let i=pos;i<data.length;i++){
+            
+        }
     }    
 
 }
