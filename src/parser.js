@@ -65,6 +65,15 @@ export default class Parser {
             linearr.push(line)
         });
 
+        let data = []
+        linearr.forEach(x => {
+            data.push(x.split(/\s+/))
+        })
+
+        for(let i=4;i<data.length;i++){
+            
+        }
+
         return
     }
 }
