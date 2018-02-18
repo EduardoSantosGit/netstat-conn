@@ -93,4 +93,13 @@ describe('parser tests', () => {
         })    
     })
 
+    it('test method parserArgR', async () => {
+
+        let body = new Command().commandNetstat('-r')
+        let parser = new Parser();
+        let ret = await parser.parserArgR(body)
+        
+          
+    })
+
 })
