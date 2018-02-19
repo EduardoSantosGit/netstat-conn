@@ -246,6 +246,15 @@ describe('parser tests', () => {
         expect(jsonString6).to.include("gateway")
     })
 
+    it('test method parserArgR return values json valid', async () => {
+
+        let body = new Command().commandNetstat('-s')
+        let parser = new Parser();
+        let ret = await parser.parserArgS(body)  
+
+        
+    });    
+
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();

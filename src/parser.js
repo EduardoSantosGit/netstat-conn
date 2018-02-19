@@ -197,6 +197,18 @@ export default class Parser {
         linearr.forEach(x => {
             data.push(x.split(/\s+/))
         })
+        
+        let splits = ['IPv4','IPv6','ICMPv4','ICMPv6','TCP','UDP']
+        let block = []
+        let index = []
+        for(let i=0;i<data.length;i++){
+            if(splits.includes(data[i][0])){
+                index.push(i)
+            }
+        }
+
+        return
+
     }    
 
 
