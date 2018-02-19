@@ -207,12 +207,18 @@ export default class Parser {
             }
         }
 
+        let parsers = []
+        
+        parsers = data.slice(index[0],index[1])
+
+        for(let i=0;i<parsers.length;i++){
+            
+        }
+        
         return
 
-    }    
-
-
-
+    }  
+    
 }
 
 Array.prototype.equals = function (array) {
