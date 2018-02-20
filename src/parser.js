@@ -1,5 +1,6 @@
 import readline from 'readline'
 import stream from 'stream'
+import ParserUtil from './parserUtil' 
 
 export default class Parser {
 
@@ -114,8 +115,8 @@ export default class Parser {
             }
         }
 
-        let ipv4 = this.parserIPV4(data.slice(posipv4 + 4, posipv6 - 4))
-        let ipv6 = this.parserIPV6(data.slice(posipv6 + 4, data.length - 3))
+        let ipv4 = ParserUtil.parserIPV4(data.slice(posipv4 + 4, posipv6 - 4))
+        let ipv6 = ParserUtil.parserIPV6(data.slice(posipv6 + 4, data.length - 3))
 
         let json = {
             "ipv4" : ipv4,
@@ -125,59 +126,7 @@ export default class Parser {
         return json
     }
 
-    parserIPV4(body) {
-        let ret = []
-        for (let i = 0; i < body.length; i++) {
-            ret.push({
-                "networkDestination": body[i][1],
-                "netmask": body[i][2],
-                "gateway": body[i][3],
-                "interface": body[i][4],
-                "metric": body[i][5]
-            })
-        }
-        return ret
-    }
-
-    parserIPV6(body) {
-
-        let ret = []
-        let ifs = ""
-        let metric = ""
-        let net = ""
-        let gate = ""
-
-        for (let i = 0; i < body.length; i++) {
-            
-            ifs = "", metric = "", net = "" , gate = ""
-
-            if (body[i].length >= 5) {
-                ifs = body[i][1]
-                metric = body[i][2]
-                net = body[i][3]
-                gate = body[i][4] 
-            }
-            else if (body[i].length === 4){
-                ifs = body[i][1]
-                metric = body[i][2]
-                net = body[i][3]
-            }
-            else if(body[i].length === 2){
-                gate = body[i][1] 
-            } 
-            ret.push(
-                {
-                    "if": ifs,
-                    "metric": metric,
-                    "networkDestination": net,
-                    "gateway": gate
-                }
-            )
-        }
-        
-        return ret
-
-    }
+    
 
     async parserArgS(body) {
         var buf = new Buffer(body);
@@ -212,12 +161,13 @@ export default class Parser {
         parsers = data.slice(index[0],index[1])
 
         for(let i=0;i<parsers.length;i++){
-            
+            //console.log(parsers[i])
         }
         
         return
-
-    }  
+    }
+    
+    
     
 }
 
