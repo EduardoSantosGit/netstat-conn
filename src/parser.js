@@ -126,8 +126,6 @@ export default class Parser {
         return json
     }
 
-    
-
     async parserArgS(body) {
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();
@@ -155,15 +153,9 @@ export default class Parser {
                 index.push(i)
             }
         }
+    
+        let ipv4 = ParserUtil.parserBlockEqual(data.slice(index[0],index[1]))
 
-        let parsers = []
-        
-        parsers = data.slice(index[0],index[1])
-
-        for(let i=0;i<parsers.length;i++){
-            //console.log(parsers[i])
-        }
-        
         return
     }
     

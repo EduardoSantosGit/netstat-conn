@@ -54,4 +54,19 @@ export default class ParserUtil {
 
     }
 
+    static parserBlockEqual(block){
+
+        let json = []
+
+        for(let i=0;i<block.length;i++){
+            
+            if(block[i][block[i].length-2] === "="){
+                
+                
+
+            }                
+        }
+
+    }
+
 }
