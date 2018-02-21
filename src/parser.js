@@ -155,6 +155,7 @@ export default class Parser {
         }
     
         let ipv4 = ParserUtil.parserBlockEqual(data.slice(index[0],index[1]))
+        let icmpv4 = ParserUtil.parserBlockTable(data.slice(index[2],index[3]))
 
         return
     }

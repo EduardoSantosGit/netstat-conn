@@ -77,4 +77,15 @@ export default class ParserUtil {
         return json
     }
 
+    static parserBlockTable(block){
+        let json = []
+
+        for(let i=0;i<block.length;i++){
+
+            console.log(block[i])
+
+        }
+            
+    }
+
 }
