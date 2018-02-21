@@ -61,12 +61,20 @@ export default class ParserUtil {
         for(let i=0;i<block.length;i++){
             
             if(block[i][block[i].length-2] === "="){
-                
-                
+                let name = ''
+                for(let j=0;j<block[i].length-2;j++){
+                    name += block[i][j] + " "
+                }
 
+                json.push({
+                    "name" : name.trim(),
+                    "value" : block[i][block[i].length-1]
+                })
+                
             }                
         }
 
+        return json
     }
 
 }
