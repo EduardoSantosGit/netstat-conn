@@ -82,10 +82,22 @@ export default class ParserUtil {
 
         for(let i=0;i<block.length;i++){
 
-            console.log(block[i])
-
+            for(let j=3;j<block[i].length;j++){
+                let text = ''
+                
+                if(!Number.isInteger(Number(block[i][j-3]))){
+                    text += block[i][j-3] + " "
+                }
+                
+                json.push({
+                    "name" : text,
+                    "received" : block[i][block[i].length-3],
+                    "sent" : block[i][block[i].length-2]    
+                })
+            }
         }
-            
+        
+        return json 
     }
 
 }
