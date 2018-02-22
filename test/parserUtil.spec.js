@@ -117,6 +117,31 @@ describe('parser util tests', () => {
         })    
     })
 
+    it('test method parserBlockEqual return json statistics ip', async () => {
+
+        let body = new Command().commandNetstat('-s')
+        let ret = await auxFormatCmd(body)
+
+        let splits = ['IPv4','IPv6','ICMPv4','ICMPv6','TCP','UDP']
+        let index = []
+
+        for(let i=0;i<ret.length;i++){
+            if(splits.includes(ret[i][0])){
+                index.push(i)
+            }
+        }
+        
+        let ipv4 = ParserUtil.parserBlockEqual(ret.slice(index[0],index[1]))
+       
+        let json = JSON.stringify(ipv4[0])
+
+        expect(ipv4).to.not.null
+        expect(json).to.include("name")
+        expect(json).to.include("value")
+        expect(json).to.include("{")
+        expect(json).to.include("}")
+    })
+
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();

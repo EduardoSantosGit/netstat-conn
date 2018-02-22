@@ -96,7 +96,6 @@ export default class ParserUtil {
                 })
             }
         }
-        
         return json 
     }
 
