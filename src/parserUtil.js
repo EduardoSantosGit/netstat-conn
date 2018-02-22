@@ -80,22 +80,17 @@ export default class ParserUtil {
     static parserBlockTable(block){
         let json = []
 
-        for(let i=0;i<block.length;i++){
+        for(let i=3;i<block.length-1;i++){
 
-            for(let j=3;j<block[i].length;j++){
-                let text = ''
-                
-                if(!Number.isInteger(Number(block[i][j-3]))){
-                    text += block[i][j-3] + " "
-                }
-                
-                json.push({
-                    "name" : text,
-                    "received" : block[i][block[i].length-3],
-                    "sent" : block[i][block[i].length-2]    
-                })
-            }
+            let text = block[i].slice(1,block[i].length-3)
+
+            json.push({
+                "name" : text.join(',').replace(','," "),
+                "received" : block[i][block[i].length-3],
+                "sent" : block[i][block[i].length-2]    
+            })
         }
+
         return json 
     }
 
