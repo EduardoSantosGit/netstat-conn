@@ -142,6 +142,28 @@ describe('parser util tests', () => {
         expect(json).to.include("}")
     })
 
+    it('test method parserBlockEqual return numbers valid', async () => {
+
+        let body = new Command().commandNetstat('-s')
+        let ret = await auxFormatCmd(body)
+
+        let splits = ['IPv4','IPv6','ICMPv4','ICMPv6','TCP','UDP']
+        let index = []
+
+        for(let i=0;i<ret.length;i++){
+            if(splits.includes(ret[i][0])){
+                index.push(i)
+            }
+        }
+        
+        let ipv4 = ParserUtil.parserBlockEqual(ret.slice(index[0],index[1]))
+
+        ipv4.map(x => {
+            if(x.value !== "")
+                expect(Number.isInteger(Number(x.value))).to.true
+        });
+    })
+
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();
