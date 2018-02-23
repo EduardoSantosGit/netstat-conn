@@ -73,7 +73,7 @@ export default class ParserUtil {
                 
             }                
         }
-
+        
         return json
     }
 
@@ -85,12 +85,12 @@ export default class ParserUtil {
             let text = block[i].slice(1,block[i].length-3)
 
             json.push({
-                "name" : text.join(',').replace(','," "),
+                "name" : text.join(',').replace(','," ").replace(','," "),
                 "received" : block[i][block[i].length-3],
                 "sent" : block[i][block[i].length-2]    
             })
         }
-
+        
         return json 
     }
 
