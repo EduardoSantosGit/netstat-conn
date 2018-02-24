@@ -146,7 +146,21 @@ describe('parser tests', () => {
        expect(ret.TcpIPv6).to.not.null
        expect(ret.UdpIPv4).to.not.null
        expect(ret.UdpIPv6).to.not.null
-    });    
+    });  
+    
+    it('test method parserArgS return IPv4 keys json valid', async () => {
+
+        let body = new Command().commandNetstat('-s')
+        let parser = new Parser();
+        let ret = await parser.parserArgS(body)
+        
+        let json = JSON.stringify(ret.IPv4[0])
+
+        expect(json).to.include("{")
+        expect(json).to.include("}")
+        expect(json).to.include("name")
+        expect(json).to.include("value")
+    });
 
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
