@@ -131,11 +131,21 @@ describe('parser tests', () => {
         expect(jsonString6).to.include("gateway")
     })
 
-    it('test method parserArgR return values json valid', async () => {
+    it('test method parserArgS return keys json valid', async () => {
 
         let body = new Command().commandNetstat('-s')
         let parser = new Parser();
-        let ret = await parser.parserArgS(body)    
+        let ret = await parser.parserArgS(body)
+        
+       expect(ret).to.not.null
+       expect(ret.IPv4).to.not.null
+       expect(ret.IPv6).to.not.null
+       expect(ret.ICMPv4).to.not.null
+       expect(ret.ICMPv6).to.not.null
+       expect(ret.TcpIPv4).to.not.null
+       expect(ret.TcpIPv6).to.not.null
+       expect(ret.UdpIPv4).to.not.null
+       expect(ret.UdpIPv6).to.not.null
     });    
 
     async function auxFormatCmd(body){
