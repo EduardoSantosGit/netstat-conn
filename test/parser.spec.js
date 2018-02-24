@@ -135,9 +135,7 @@ describe('parser tests', () => {
 
         let body = new Command().commandNetstat('-s')
         let parser = new Parser();
-        let ret = await parser.parserArgS(body)  
-
-        
+        let ret = await parser.parserArgS(body)    
     });    
 
     async function auxFormatCmd(body){

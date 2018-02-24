@@ -179,7 +179,7 @@ describe('parser util tests', () => {
         }
         
         let icmpv4 = ParserUtil.parserBlockTable(ret.slice(index[2],index[3]))
-
+        
         let json = JSON.stringify(icmpv4[0])
 
         expect(icmpv4).to.not.null

@@ -153,11 +153,28 @@ export default class Parser {
                 index.push(i)
             }
         }
-    
+        
         let ipv4 = ParserUtil.parserBlockEqual(data.slice(index[0],index[1]))
+        let ipv6 = ParserUtil.parserBlockEqual(data.slice(index[1],index[2]))
         let icmpv4 = ParserUtil.parserBlockTable(data.slice(index[2],index[3]))
+        let icmpv6 = ParserUtil.parserBlockTable(data.slice(index[3],index[4]))
+        let tcpIpv4 = ParserUtil.parserBlockEqual(data.slice(index[4],index[5]))
+        let tcpIpv6 = ParserUtil.parserBlockEqual(data.slice(index[5],index[6]))
+        let udpIpv4 = ParserUtil.parserBlockEqual(data.slice(index[6],index[7]))
+        let udpIpv6 = ParserUtil.parserBlockEqual(data.slice(index[7],index[8]))
 
-        return
+        let json = {
+            "IPv4": ipv4,
+            "IPv6" : ipv6,
+            "ICMPv4" : icmpv4,
+            "ICMPv6" : icmpv6,
+            "TcpIPv4" : tcpIpv4,
+            "TcpIPv6" : tcpIpv6,
+            "UdpIPv4" : udpIpv4,
+            "UdpIPv6" : udpIpv6
+        }
+
+        return json
     }
     
     
