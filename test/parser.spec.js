@@ -234,6 +234,20 @@ describe('parser tests', () => {
         expect(json).to.include("value")
     });
 
+    it('test method parserArgS return UdpIPv4 keys json valid', async () => {
+
+        let body = new Command().commandNetstat('-s')
+        let parser = new Parser();
+        let ret = await parser.parserArgS(body)
+        
+        let json = JSON.stringify(ret.UdpIPv4[0])
+
+        expect(json).to.include("{")
+        expect(json).to.include("}")
+        expect(json).to.include("name")
+        expect(json).to.include("value")
+    });
+
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();
