@@ -262,6 +262,15 @@ describe('parser tests', () => {
         expect(json).to.include("value")
     });
 
+    it('test method parserArgO return', async () => {
+
+        let body = new Command().commandNetstat('-o')
+        let parser = new Parser();
+        let ret = await parser.parserArgO(body)
+        
+       
+    });
+
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();

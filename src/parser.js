@@ -195,6 +195,7 @@ export default class Parser {
         linearr.forEach(x => {
             data.push(x.split(/\s+/))
         })
+
     }    
     
     
