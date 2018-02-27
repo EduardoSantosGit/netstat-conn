@@ -264,7 +264,7 @@ describe('parser tests', () => {
 
     it('test method parserArgO return', async () => {
 
-        let body = new Command().commandNetstat('-o')
+        let body = new Command().commandNetstat('-o', { timeout: 5000 })
         let parser = new Parser();
         let ret = await parser.parserArgO(body)
         

@@ -196,6 +196,7 @@ export default class Parser {
             data.push(x.split(/\s+/))
         })
 
+        console.log(data)
     }    
     
     
