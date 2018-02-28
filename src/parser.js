@@ -196,7 +196,21 @@ export default class Parser {
             data.push(x.split(/\s+/))
         })
 
-        console.log(data)
+        let ret = []
+
+        for(let i=4;i<data.length;i++){
+            
+            ret.push({
+                "protocol" : data[i][1],
+                "localAddress" : data[i][2],
+                "foreignAddress" : data[i][3],
+                "state" : data[i][4],
+                "pid" : data[i][5]
+            })
+
+        }
+
+        return ret
     }    
     
     
