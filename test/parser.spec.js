@@ -262,13 +262,22 @@ describe('parser tests', () => {
         expect(json).to.include("value")
     });
 
-    it('test method parserArgO return', async () => {
+    it('test method parserArgO return json valid', async () => {
 
         let body = new Command().commandNetstat('-o', { timeout: 5000 })
         let parser = new Parser();
         let ret = await parser.parserArgO(body)
         
-       
+        let json = JSON.stringify(ret[0])
+        
+       expect(ret).to.not.null
+       expect(json).to.include("{")
+       expect(json).to.include("}")
+       expect(json).to.include("protocol")
+       expect(json).to.include("localAddress")
+       expect(json).to.include("foreignAddress")
+       expect(json).to.include("state")
+       expect(json).to.include("pid")
     });
 
     async function auxFormatCmd(body){
