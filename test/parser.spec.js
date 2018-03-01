@@ -291,7 +291,7 @@ describe('parser tests', () => {
        expect(ret[0].pid).to.not.null
        expect(ret[0].state).to.not.null
     });
-
+    
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();
