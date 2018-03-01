@@ -308,6 +308,18 @@ describe('parser tests', () => {
         expect(json).to.include("state")
     });
 
+    it('test method parserArgA return values valid', async () => {
+
+        let body = new Command().commandNetstat('-o', { timeout: 5000 })
+        let parser = new Parser();
+        let ret = await parser.parserArgA(body)
+
+        expect(ret[0].protocol).to.not.null
+        expect(ret[0].foreignAddress).to.not.null
+        expect(ret[0].localAddress).to.not.null
+        expect(ret[0].state).to.not.null
+    });
+
     async function auxFormatCmd(body) {
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();
