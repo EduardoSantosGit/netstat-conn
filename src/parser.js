@@ -213,7 +213,6 @@ export default class Parser {
         return ret
     }    
 
-
     async parserArgA(body) {
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();
@@ -232,6 +231,20 @@ export default class Parser {
         linearr.forEach(x => {
             data.push(x.split(/\s+/))
         })
+
+        let ret = []
+
+        for(let i=4;i<data.length;i++){
+
+            ret.push({
+                "protocol" : data[i][1],
+                "localAddress" : data[i][2],
+                "foreignAddress" : data[i][3],
+                "state" : data[i][4]
+            })
+        }
+        console.log(ret)
+        return ret
     }    
     
     

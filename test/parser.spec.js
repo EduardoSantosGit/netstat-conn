@@ -291,6 +291,14 @@ describe('parser tests', () => {
        expect(ret[0].pid).to.not.null
        expect(ret[0].state).to.not.null
     });
+
+    it('test method parserArgA return', async () => {
+
+        let body = new Command().commandNetstat('-a', { timeout: 5000 })
+        let parser = new Parser();
+        let ret = await parser.parserArgA(body)
+        
+    });
     
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
