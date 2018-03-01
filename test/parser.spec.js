@@ -11,7 +11,7 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-e')
         let parser = new Parser();
         let ret = await parser.parserArgE(body)
-        
+
         let jsonString = JSON.stringify(ret[0])
 
         expect(jsonString).to.include("{");
@@ -26,12 +26,12 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-e')
         let parser = new Parser();
         let ret = await parser.parserArgE(body)
-        
+
         expect(ret).to.not.null
         expect(ret.length).to.equal(6)
         ret.map(x => {
             expect(x).to.not.null
-        })       
+        })
     })
 
     it('test method parserArgE params -e return json values numbers', async () => {
@@ -39,11 +39,11 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-e')
         let parser = new Parser();
         let ret = await parser.parserArgE(body)
-        
+
         ret.map(x => {
             expect(Number.isInteger(Number(x.sent))).to.true
             expect(Number.isInteger(Number(x.received))).to.true
-        })       
+        })
     })
 
     it('test method parserArgN params -n return json', async () => {
@@ -51,7 +51,7 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-n')
         let parser = new Parser();
         let ret = await parser.parserArgN(body)
-        
+
         let jsonString = JSON.stringify(ret[0])
 
         expect(jsonString).to.include("{")
@@ -67,14 +67,14 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-n')
         let parser = new Parser();
         let ret = await parser.parserArgN(body)
-        
-        let state = ["CLOSE_WAIT", "CLOSED", "ESTABLISHED","FIN_WAIT_1","FIN_WAIT_2","LAST_ACK","LISTEN","SYN_RECEIVED",
-        "SYN_SEND","TIME_WAIT"]
-        
+
+        let state = ["CLOSE_WAIT", "CLOSED", "ESTABLISHED", "FIN_WAIT_1", "FIN_WAIT_2", "LAST_ACK", "LISTEN", "SYN_RECEIVED",
+            "SYN_SEND", "TIME_WAIT"]
+
         ret.map(x => {
             expect(x.protocol === ("TCP" || "UDP")).to.true
-            expect(state.includes(x.state)).to.true            
-        })    
+            expect(state.includes(x.state)).to.true
+        })
     })
 
     it('test method parserArgN params -n return values ips and ports valid', async () => {
@@ -82,24 +82,24 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-n')
         let parser = new Parser();
         let ret = await parser.parserArgN(body)
-        
+
         ret.map(x => {
 
             expect(x.localAddress).to.include(":")
             expect(x.foreignAddress).to.include(":")
 
-            if(!x.localAddress.includes("[") || !x.foreignAddress.includes("[")){
+            if (!x.localAddress.includes("[") || !x.foreignAddress.includes("[")) {
                 expect(x.foreignAddress).to.include(".")
                 expect(x.localAddress).to.include(".")
-            }     
-        })    
+            }
+        })
     })
 
     it('test method parserArgR return json and array not null', async () => {
 
         let body = new Command().commandNetstat('-r')
         let parser = new Parser();
-        let ret = await parser.parserArgR(body)  
+        let ret = await parser.parserArgR(body)
 
         expect(ret).to.not.null
         expect(ret.ipv4).to.not.null
@@ -110,7 +110,7 @@ describe('parser tests', () => {
 
         let body = new Command().commandNetstat('-r')
         let parser = new Parser();
-        let ret = await parser.parserArgR(body)  
+        let ret = await parser.parserArgR(body)
 
         let jsonString4 = JSON.stringify(ret.ipv4[0])
         let jsonString6 = JSON.stringify(ret.ipv6[0])
@@ -136,24 +136,24 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-s')
         let parser = new Parser();
         let ret = await parser.parserArgS(body)
-        
-       expect(ret).to.not.null
-       expect(ret.IPv4).to.not.null
-       expect(ret.IPv6).to.not.null
-       expect(ret.ICMPv4).to.not.null
-       expect(ret.ICMPv6).to.not.null
-       expect(ret.TcpIPv4).to.not.null
-       expect(ret.TcpIPv6).to.not.null
-       expect(ret.UdpIPv4).to.not.null
-       expect(ret.UdpIPv6).to.not.null
-    });  
-    
+
+        expect(ret).to.not.null
+        expect(ret.IPv4).to.not.null
+        expect(ret.IPv6).to.not.null
+        expect(ret.ICMPv4).to.not.null
+        expect(ret.ICMPv6).to.not.null
+        expect(ret.TcpIPv4).to.not.null
+        expect(ret.TcpIPv6).to.not.null
+        expect(ret.UdpIPv4).to.not.null
+        expect(ret.UdpIPv6).to.not.null
+    });
+
     it('test method parserArgS return IPv4 keys json valid', async () => {
 
         let body = new Command().commandNetstat('-s')
         let parser = new Parser();
         let ret = await parser.parserArgS(body)
-        
+
         let json = JSON.stringify(ret.IPv4[0])
 
         expect(json).to.include("{")
@@ -167,7 +167,7 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-s')
         let parser = new Parser();
         let ret = await parser.parserArgS(body)
-        
+
         let json = JSON.stringify(ret.IPv6[0])
 
         expect(json).to.include("{")
@@ -181,7 +181,7 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-s')
         let parser = new Parser();
         let ret = await parser.parserArgS(body)
-        
+
         let json = JSON.stringify(ret.ICMPv4[0])
 
         expect(json).to.include("{")
@@ -196,7 +196,7 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-s')
         let parser = new Parser();
         let ret = await parser.parserArgS(body)
-        
+
         let json = JSON.stringify(ret.ICMPv6[0])
 
         expect(json).to.include("{")
@@ -211,7 +211,7 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-s')
         let parser = new Parser();
         let ret = await parser.parserArgS(body)
-        
+
         let json = JSON.stringify(ret.TcpIPv4[0])
 
         expect(json).to.include("{")
@@ -225,7 +225,7 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-s')
         let parser = new Parser();
         let ret = await parser.parserArgS(body)
-        
+
         let json = JSON.stringify(ret.TcpIPv6[0])
 
         expect(json).to.include("{")
@@ -239,7 +239,7 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-s')
         let parser = new Parser();
         let ret = await parser.parserArgS(body)
-        
+
         let json = JSON.stringify(ret.UdpIPv4[0])
 
         expect(json).to.include("{")
@@ -253,7 +253,7 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-s')
         let parser = new Parser();
         let ret = await parser.parserArgS(body)
-        
+
         let json = JSON.stringify(ret.UdpIPv6[0])
 
         expect(json).to.include("{")
@@ -267,16 +267,16 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-o', { timeout: 5000 })
         let parser = new Parser();
         let ret = await parser.parserArgO(body)
-        
+
         let json = JSON.stringify(ret[0])
 
-       expect(json).to.include("{")
-       expect(json).to.include("}")
-       expect(json).to.include("protocol")
-       expect(json).to.include("localAddress")
-       expect(json).to.include("foreignAddress")
-       expect(json).to.include("state")
-       expect(json).to.include("pid")
+        expect(json).to.include("{")
+        expect(json).to.include("}")
+        expect(json).to.include("protocol")
+        expect(json).to.include("localAddress")
+        expect(json).to.include("foreignAddress")
+        expect(json).to.include("state")
+        expect(json).to.include("pid")
     });
 
     it('test method parserArgO return values valid', async () => {
@@ -284,23 +284,31 @@ describe('parser tests', () => {
         let body = new Command().commandNetstat('-o', { timeout: 5000 })
         let parser = new Parser();
         let ret = await parser.parserArgO(body)
-    
-       expect(ret[0].protocol).to.not.null
-       expect(ret[0].foreignAddress).to.not.null
-       expect(ret[0].localAddress).to.not.null
-       expect(ret[0].pid).to.not.null
-       expect(ret[0].state).to.not.null
+
+        expect(ret[0].protocol).to.not.null
+        expect(ret[0].foreignAddress).to.not.null
+        expect(ret[0].localAddress).to.not.null
+        expect(ret[0].pid).to.not.null
+        expect(ret[0].state).to.not.null
     });
 
-    it('test method parserArgA return', async () => {
+    it('test method parserArgA return json valid', async () => {
 
         let body = new Command().commandNetstat('-a', { timeout: 5000 })
         let parser = new Parser();
         let ret = await parser.parserArgA(body)
-        
+
+        let json = JSON.stringify(ret[0])
+
+        expect(json).to.include("{")
+        expect(json).to.include("}")
+        expect(json).to.include("protocol")
+        expect(json).to.include("localAddress")
+        expect(json).to.include("foreignAddress")
+        expect(json).to.include("state")
     });
-    
-    async function auxFormatCmd(body){
+
+    async function auxFormatCmd(body) {
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();
         bufferStream.end(buf);

@@ -243,7 +243,6 @@ export default class Parser {
                 "state" : data[i][4]
             })
         }
-        console.log(ret)
         return ret
     }    
     
