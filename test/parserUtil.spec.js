@@ -190,6 +190,14 @@ describe('parser util tests', () => {
         expect(json).to.include("}")
     })
 
+    it('test method parserCmdOut return type array', async () => {
+
+        let body = new Command().commandNetstat('-s')
+        let ret = await ParserUtil.parserCmdOut(body)
+        
+        expect(Array.isArray(ret)).to.true
+    })
+
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();
@@ -211,3 +219,24 @@ describe('parser util tests', () => {
         return data
     }
 })    
+
+Array.prototype.equals = function (array) {
+    if (!array)
+        return false;
+
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l = this.length; i < l; i++) {
+
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+
+            if (!this[i].equals(array[i]))
+                return false;
+        }
+        else if (this[i] != array[i]) {
+            return false;
+        }
+    }
+    return true;
+}
