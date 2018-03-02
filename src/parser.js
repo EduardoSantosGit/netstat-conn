@@ -1,27 +1,10 @@
-import readline from 'readline'
-import stream from 'stream'
 import ParserUtil from './parserUtil' 
 
 export default class Parser {
 
     async parserArgE(body) {
-        var buf = new Buffer(body);
-        var bufferStream = new stream.PassThrough();
-        bufferStream.end(buf);
-
-        var rl = readline.createInterface({
-            input: bufferStream,
-        });
-
-        let linearr = []
-        await rl.on('line', (line) => {
-            linearr.push(line)
-        });
-
-        let data = []
-        linearr.forEach(x => {
-            data.push(x.split(/\s+/))
-        })
+        
+        let data = await ParserUtil.parserCmdOut(body)
 
         let ret = []
         for (let i = 4; i < data.length; i++) {
@@ -53,23 +36,8 @@ export default class Parser {
     }
 
     async parserArgN(body) {
-        var buf = new Buffer(body);
-        var bufferStream = new stream.PassThrough();
-        bufferStream.end(buf);
 
-        var rl = readline.createInterface({
-            input: bufferStream,
-        });
-
-        let linearr = []
-        await rl.on('line', (line) => {
-            linearr.push(line)
-        });
-
-        let data = []
-        linearr.forEach(x => {
-            data.push(x.split(/\s+/))
-        })
+        let data = await ParserUtil.parserCmdOut(body)
 
         let ret = []
         for (let i = 4; i < data.length; i++) {
@@ -86,23 +54,8 @@ export default class Parser {
     }
 
     async parserArgR(body) {
-        var buf = new Buffer(body);
-        var bufferStream = new stream.PassThrough();
-        bufferStream.end(buf);
 
-        var rl = readline.createInterface({
-            input: bufferStream,
-        });
-
-        let linearr = []
-        await rl.on('line', (line) => {
-            linearr.push(line)
-        });
-
-        let data = []
-        linearr.forEach(x => {
-            data.push(x.split(/\s+/))
-        })
+        let data = await ParserUtil.parserCmdOut(body)
 
         let posipv4 = 0
         let posipv6 = 0
@@ -127,23 +80,8 @@ export default class Parser {
     }
 
     async parserArgS(body) {
-        var buf = new Buffer(body);
-        var bufferStream = new stream.PassThrough();
-        bufferStream.end(buf);
 
-        var rl = readline.createInterface({
-            input: bufferStream,
-        });
-
-        let linearr = []
-        await rl.on('line', (line) => {
-            linearr.push(line)
-        });
-
-        let data = []
-        linearr.forEach(x => {
-            data.push(x.split(/\s+/))
-        })
+        let data = await ParserUtil.parserCmdOut(body)
         
         let splits = ['IPv4','IPv6','ICMPv4','ICMPv6','TCP','UDP']
         let block = []
@@ -178,23 +116,8 @@ export default class Parser {
     }
     
     async parserArgO(body) {
-        var buf = new Buffer(body);
-        var bufferStream = new stream.PassThrough();
-        bufferStream.end(buf);
 
-        var rl = readline.createInterface({
-            input: bufferStream,
-        });
-
-        let linearr = []
-        await rl.on('line', (line) => {
-            linearr.push(line)
-        });
-
-        let data = []
-        linearr.forEach(x => {
-            data.push(x.split(/\s+/))
-        })
+        let data = await ParserUtil.parserCmdOut(body)
 
         let ret = []
 
@@ -214,23 +137,8 @@ export default class Parser {
     }    
 
     async parserArgA(body) {
-        var buf = new Buffer(body);
-        var bufferStream = new stream.PassThrough();
-        bufferStream.end(buf);
 
-        var rl = readline.createInterface({
-            input: bufferStream,
-        });
-
-        let linearr = []
-        await rl.on('line', (line) => {
-            linearr.push(line)
-        });
-
-        let data = []
-        linearr.forEach(x => {
-            data.push(x.split(/\s+/))
-        })
+        let data = await ParserUtil.parserCmdOut(body)
 
         let ret = []
 

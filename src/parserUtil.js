@@ -1,3 +1,6 @@
+import readline from 'readline'
+import stream from 'stream'
+
 export default class ParserUtil {
 
     static parserIPV4(body) {
@@ -94,7 +97,7 @@ export default class ParserUtil {
         return json 
     }
 
-    static parserCmdOut(value){
+    static async parserCmdOut(value){
         var buf = new Buffer(value);
         var bufferStream = new stream.PassThrough();
         bufferStream.end(buf);
