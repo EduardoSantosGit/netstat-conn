@@ -94,4 +94,27 @@ export default class ParserUtil {
         return json 
     }
 
+    static parserCmdOut(value){
+        var buf = new Buffer(value);
+        var bufferStream = new stream.PassThrough();
+        bufferStream.end(buf);
+
+        var rl = readline.createInterface({
+            input: bufferStream,
+        });
+
+        let linearr = []
+        await rl.on('line', (line) => {
+            linearr.push(line)
+        });
+
+        let data = []
+        linearr.forEach(x => {
+            data.push(x.split(/\s+/))
+        })
+
+        return data
+    }
+
+
 }
