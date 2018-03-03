@@ -197,7 +197,7 @@ describe('parser util tests', () => {
         
         expect(Array.isArray(ret)).to.true
     })
-
+    
     async function auxFormatCmd(body){
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();

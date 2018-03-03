@@ -5,10 +5,10 @@ export default class Command {
     commandNetstat(args, options = null){
 
         if(options === null){
-            options = { timeout: 1000}
+            options = { timeout: 1000, encoding: 'utf8'}
         }
 
-        let ls = spawnSync('netstat', [args], { encoding : 'utf8', timeout: options.timeout });      
+        let ls = spawnSync('netstat', [args], { encoding : options.encoding , timeout: options.timeout });      
         return ls.stdout
     }
 }
