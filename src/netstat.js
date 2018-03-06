@@ -17,7 +17,7 @@ export default class NetStat {
 
     validateArgs(args) {
 
-        let arrArgs = ['a', 'e', 'n', 'o', 's', 'r']
+        let arrArgs = ['a', 'e', 'n', 'o', 's', 'r', 'p']
         let valid = true
 
         let data = this.convertArgs(args)

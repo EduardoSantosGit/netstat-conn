@@ -152,8 +152,14 @@ export default class Parser {
             })
         }
         return ret
-    }    
+    }
     
+    async parserArgP(body){
+
+        let data = await ParserUtil.parserCmdOut(body)
+
+        
+    }
     
 }
 
