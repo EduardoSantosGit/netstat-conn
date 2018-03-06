@@ -101,7 +101,7 @@ export default class ParserUtil {
         var buf = new Buffer(value);
         var bufferStream = new stream.PassThrough();
         bufferStream.end(buf);
-
+        
         var rl = readline.createInterface({
             input: bufferStream,
         });
@@ -110,7 +110,7 @@ export default class ParserUtil {
         await rl.on('line', (line) => {
             linearr.push(line)
         });
-
+        console.log(linearr)
         let data = []
         linearr.forEach(x => {
             data.push(x.split(/\s+/))

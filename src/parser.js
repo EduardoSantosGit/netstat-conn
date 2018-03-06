@@ -157,8 +157,6 @@ export default class Parser {
     async parserArgP(body){
 
         let data = await ParserUtil.parserCmdOut(body)
-
-        
     }
     
 }

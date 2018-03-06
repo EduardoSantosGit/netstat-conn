@@ -320,6 +320,15 @@ describe('parser tests', () => {
         expect(ret[0].state).to.not.null
     });
 
+    it('test method parserArgP', async () => {
+
+        let body = new Command().commandNetstat('-p TCP', { timeout: 7000 })
+        let parser = new Parser();
+        let ret = await parser.parserArgP(body)
+
+        
+    });
+
     async function auxFormatCmd(body) {
         var buf = new Buffer(body);
         var bufferStream = new stream.PassThrough();
