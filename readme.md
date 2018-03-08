@@ -5,3 +5,6 @@
 * Nodejs
 * Babel
 * ES8
+* Istambul
+* Eslint
+* Mocha
